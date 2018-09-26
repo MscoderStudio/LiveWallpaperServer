@@ -1,8 +1,11 @@
 package main
 
 import (
-	"net/http"
 	"LiveWallpaperServer/upupoo"
+	"encoding/json"
+	"log"
+	"net/http"
+	"os"
 	"time"
 )
 
@@ -16,10 +19,24 @@ type Configuration struct {
 var config Configuration
 
 func index(writer http.ResponseWriter, request *http.Request) {
+	upupoo.GetTags()
+}
 
+func loadConfig() {
+	file, err := os.Open("config.json")
+	if err != nil {
+		log.Fatalln("Cannot open config file", err)
+	}
+	decoder := json.NewDecoder(file)
+	config = Configuration{}
+	err = decoder.Decode(&config)
+	if err != nil {
+		log.Fatalln("Cannot get configuration from file", err)
+	}
 }
 
 func main() {
+	loadConfig()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", index)
 

@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func getTags() {
+func GetTags() {
 	res, err := http.Get("http://wallpaper.upupoo.com/async/getTags.htm?callback=")
 	if err != nil {
 		log.Fatal(err)
