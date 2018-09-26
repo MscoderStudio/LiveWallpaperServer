@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"LiveWallpaperServer/upupoo"
 	"time"
 )
 
@@ -14,8 +15,14 @@ type Configuration struct {
 
 var config Configuration
 
+func index(writer http.ResponseWriter, request *http.Request) {
+
+}
+
 func main() {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", index)
+
 	server := &http.Server{
 		Addr:           config.Address,
 		Handler:        mux,
