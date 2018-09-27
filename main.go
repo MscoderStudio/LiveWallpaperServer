@@ -20,6 +20,13 @@ var config Configuration
 
 func index(writer http.ResponseWriter, request *http.Request) {
 	upupoo.GetTags()
+
+	// var tags upupoo.Tags = upupoo.GetTags()
+	// b, err := json.Marshal(tags.data)
+	// if err != nil {
+	// log.Fatal(err)
+	// }
+	// fmt.Print(b)
 }
 
 func loadConfig() {
