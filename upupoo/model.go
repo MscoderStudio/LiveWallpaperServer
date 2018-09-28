@@ -1,9 +1,10 @@
 package upupoo
 
+//大写开头才能在外部包中访问
 type Tag struct {
-	CreateTime string `json:"createTime"`
-	TagId      string `json:"tagId"`
-	IsDelete   string `json:"isDelete"`
+	CreateTime int    `json:"createTime"` //Jsontag 是映射json对应的字段
+	TagId      int    `json:"tagId"`
+	IsDelete   int    `json:"isDelete"`
 	TagName    string `json:"tagName"`
 }
 

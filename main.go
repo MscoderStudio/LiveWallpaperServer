@@ -3,6 +3,7 @@ package main
 import (
 	"LiveWallpaperServer/upupoo"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -19,14 +20,14 @@ type Configuration struct {
 var config Configuration
 
 func index(writer http.ResponseWriter, request *http.Request) {
-	upupoo.GetTags()
+	// upupoo.GetTags()
 
-	// var tags upupoo.Tags = upupoo.GetTags()
-	// b, err := json.Marshal(tags.data)
-	// if err != nil {
-	// log.Fatal(err)
-	// }
-	// fmt.Print(b)
+	tags, err := upupoo.GetTags()
+	b, err := json.Marshal(tags.Data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Print(string(b[:]))
 }
 
 func loadConfig() {
