@@ -20,8 +20,6 @@ type Configuration struct {
 var config Configuration
 
 func index(writer http.ResponseWriter, request *http.Request) {
-	// upupoo.GetTags()
-
 	tags, err := upupoo.GetTags()
 	b, err := json.Marshal(tags.Data)
 	if err != nil {
