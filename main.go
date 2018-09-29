@@ -25,6 +25,7 @@ func getTags(writer http.ResponseWriter, request *http.Request) {
 		log.Fatal(err)
 	}
 	// result = string(b[:])
+	writer.Header().Set("Content-Type", "application/json")
 	writer.Write(b)
 }
 
