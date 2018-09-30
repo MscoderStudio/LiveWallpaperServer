@@ -29,6 +29,11 @@ func getTags(writer http.ResponseWriter, request *http.Request) {
 	writer.Write(b)
 }
 
+func getWallpapers(writer http.ResponseWriter, request *http.Request) {
+	upupoo.GetWallpapers()
+	writer.Header().Set("Content-Type", "application/json")
+}
+
 func loadConfig() {
 	file, err := os.Open("config.json")
 	if err != nil {
@@ -46,7 +51,7 @@ func main() {
 	loadConfig()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/tags", getTags)
-
+	mux.HandleFunc("/wallpapers", getWallpapers)
 	server := &http.Server{
 		Addr:           config.Address,
 		Handler:        mux,
