@@ -20,11 +20,11 @@ var config Configuration
 
 func getTags(writer http.ResponseWriter, request *http.Request) {
 	tags, err := upupoo.GetTags()
-	b, err := json.Marshal(tags.Data)
+	b, err := json.Marshal(tags)
 	if err != nil {
 		log.Fatal(err)
 	}
-	// result = string(b[:])
+
 	writer.Header().Set("Content-Type", "application/json")
 	writer.Write(b)
 }
