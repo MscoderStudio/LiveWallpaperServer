@@ -20,18 +20,28 @@ var config Configuration
 
 func getTags(writer http.ResponseWriter, request *http.Request) {
 	tags, err := upupoo.GetTags()
-	b, err := json.Marshal(tags)
+	json, err := json.Marshal(tags)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	writer.Header().Set("Content-Type", "application/json")
-	writer.Write(b)
+	writer.Write(json)
 }
 
 func getWallpapers(writer http.ResponseWriter, request *http.Request) {
 	upupoo.GetWallpapers()
 	writer.Header().Set("Content-Type", "application/json")
+}
+
+func getSorts(writer http.ResponseWriter, request *http.Request) {
+	sorts, err := upupoo.GetSorts()
+	json, err := json.Marshal(sorts)
+	if err != nil {
+		log.Fatal(err)
+	}
+	writer.Header().Set("Content-Type", "application/json")
+	writer.Write(json)
 }
 
 func loadConfig() {
@@ -51,6 +61,7 @@ func main() {
 	loadConfig()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/tags", getTags)
+	mux.HandleFunc("/sorts", getSorts)
 	mux.HandleFunc("/wallpapers", getWallpapers)
 	server := &http.Server{
 		Addr:           config.Address,
