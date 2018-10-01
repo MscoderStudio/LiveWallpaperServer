@@ -9,3 +9,10 @@ type Sort struct {
 	ID   int
 	Name string
 }
+
+type Wallpaper struct {
+	Url     string
+	Img     string
+	Name    string
+	DownStr string
+}
