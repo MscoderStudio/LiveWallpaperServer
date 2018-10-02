@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-func GetWallpapers() {
+func GetWallpapers() (result []model.Wallpaper, err error) {
 	//请求服务器获取json
-	res, err := http.Get("http://wallpaper.upupoo.com/async/asyncSearch--3-2-2-2.htm?callback=&_=1537975783716")
+	res, err := http.Get("http://wallpaper.upupoo.com/async/asyncSearch--1-0-2-1.htm?callback=")
 	if err != nil {
 		return
 	}
@@ -25,6 +25,17 @@ func GetWallpapers() {
 	// 反序列化
 	var temp SearchResult
 	err = json.Unmarshal([]byte(tmpJson), &temp)
+
+	// UTags转换成标准Tags
+	for _, v := range temp.Data.Rows {
+		result = append(result,
+			model.Wallpaper{
+				Url:     v.PaperUrl,
+				Img:     v.PaperImg,
+				Name:    v.PaperName,
+				DownStr: v.DownStr})
+	}
+	return
 }
 
 func GetTags() (result []model.Tag, err error) {

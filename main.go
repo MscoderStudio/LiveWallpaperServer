@@ -30,8 +30,14 @@ func getTags(writer http.ResponseWriter, request *http.Request) {
 }
 
 func getWallpapers(writer http.ResponseWriter, request *http.Request) {
-	upupoo.GetWallpapers()
+	result, err := upupoo.GetWallpapers()
+	json, err := json.Marshal(result)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	writer.Header().Set("Content-Type", "application/json")
+	writer.Write(json)
 }
 
 func getSorts(writer http.ResponseWriter, request *http.Request) {

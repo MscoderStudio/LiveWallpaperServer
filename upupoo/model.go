@@ -23,7 +23,7 @@ type UWallpaper struct {
 	AuthorName        string
 	CreateTime        int
 	DownCount         int
-	DownStr           int
+	DownStr           string
 	DownUrl           string
 	Heat              int
 	Icon              string
