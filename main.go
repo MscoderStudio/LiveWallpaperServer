@@ -30,7 +30,20 @@ func getTags(writer http.ResponseWriter, request *http.Request) {
 }
 
 func getWallpapers(writer http.ResponseWriter, request *http.Request) {
-	result, err := upupoo.GetWallpapers()
+	tag := request.URL.Query().Get("tag")
+	if tag == "" {
+		tag = "0"
+	}
+	sort := request.URL.Query().Get("sort")
+	if sort == "" {
+		sort = "0"
+	}
+	page := request.URL.Query().Get("page")
+	if page == "" {
+		page = "0"
+	}
+
+	result, err := upupoo.GetWallpapers(tag, sort, page)
 	json, err := json.Marshal(result)
 	if err != nil {
 		log.Fatal(err)

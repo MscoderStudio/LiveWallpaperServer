@@ -3,13 +3,15 @@ package upupoo
 import (
 	"LiveWallpaperServer/model"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func GetWallpapers() (result []model.Wallpaper, err error) {
+func GetWallpapers(tag string, sort string, page string) (result []model.Wallpaper, err error) {
 	//请求服务器获取json
-	res, err := http.Get("http://wallpaper.upupoo.com/async/asyncSearch--1-0-2-1.htm?callback=")
+	url := fmt.Sprintf("http://wallpaper.upupoo.com/async/asyncSearch--1-%s-%s-%s.htm?callback=", tag, sort, page)
+	res, err := http.Get(url)
 	if err != nil {
 		return
 	}
