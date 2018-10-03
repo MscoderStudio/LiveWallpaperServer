@@ -67,8 +67,8 @@ func GetTags() (result []model.Tag, err error) {
 }
 
 func GetSorts() (result []model.Sort, err error) {
-	result = append(result, model.Sort{ID: 0, Name: "最新"})
-	result = append(result, model.Sort{ID: 1, Name: "最热"})
+	result = append(result, model.Sort{ID: 0, Name: "最热"})
+	result = append(result, model.Sort{ID: 1, Name: "最新"})
 	result = append(result, model.Sort{ID: 2, Name: "近期热门"})
 	return
 }
