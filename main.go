@@ -3,6 +3,7 @@ package main
 import (
 	"LiveWallpaperServer/upupoo"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -77,6 +78,11 @@ func loadConfig() {
 }
 
 func main() {
+	fmt.Println("本项目属于技术交流，不承担任何版权责任")
+	fmt.Println("不使用时关闭本窗口释放多余的性能开销")
+	fmt.Println("巨应工作室 qq交流群: 641405255")
+	fmt.Println("源码地址：https://github.com/MscoderStudio/LiveWallpaperServer")
+	fmt.Println("《巨应动态壁纸》 第三方数据解析器运行中....")
 	loadConfig()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/tags", getTags)
