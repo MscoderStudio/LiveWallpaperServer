@@ -71,7 +71,7 @@ func loadConfig() {
 		log.Fatal(err)
 	}
 	configPath := filepath.Join(currentDir, "config.json")
-	fmt.Printf("配置文件：%s", currentDir)
+	fmt.Printf("配置文件：%s\r\n", currentDir)
 	file, err := os.Open(configPath)
 	if err != nil {
 		log.Fatalln("Cannot open config file", err)
@@ -97,10 +97,10 @@ func main() {
 		WriteTimeout:   time.Duration(config.WriteTimeout * int64(time.Second)),
 		MaxHeaderBytes: 1 << 20,
 	}
-	server.ListenAndServe()
 	fmt.Println("本项目属于技术交流，不承担任何版权责任")
 	fmt.Println("不使用时关闭本窗口释放多余的性能开销")
 	fmt.Println("巨应工作室 qq交流群: 641405255")
 	fmt.Println("源码地址：https://github.com/MscoderStudio/LiveWallpaperServer")
 	fmt.Println("《巨应动态壁纸》 第三方数据解析器运行中....")
+	server.ListenAndServe()
 }
